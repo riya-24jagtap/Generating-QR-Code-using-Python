@@ -1,0 +1,21 @@
+import os
+import qrcode
+from PIL import Image
+
+
+#creating path locations
+filepath = "youtube_qr.png"
+if os.path.exists(filepath):
+    os.remove(filepath)  # Deletes old file
+    print("Old file removed. Generating a new one.")     
+
+#generating qr code
+website_link = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+qr = qrcode.QRCode(version=3, box_size=10, border=5)  
+qr.add_data(website_link)
+qr.make()
+img = qr.make_image(fill_color='black', back_color='white') 
+img.save("updated_qr1.png")  
+img.save(filepath)
+img = Image.open("updated_qr1.png")  
+img.show()
