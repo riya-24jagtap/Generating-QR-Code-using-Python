@@ -3,19 +3,23 @@ import qrcode
 from PIL import Image
 
 
-#creating path locations
+#Check & Remove Existing QR Code File
 filepath = "youtube_qr.png"
 if os.path.exists(filepath):
     os.remove(filepath)  # Deletes old file
-    print("Old file removed. Generating a new one.")     
+    print("Old file removed. Generating a new one.")   #New file created  
 
 #generating qr code
-website_link = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+website_link = "https://www.youtube.com/watch?v=Dv7gLpW91DM"
+
+#Instance of qr code class
 qr = qrcode.QRCode(version=3, box_size=10, border=5)  
 qr.add_data(website_link)
 qr.make()
 img = qr.make_image(fill_color='black', back_color='white') 
 img.save("updated_qr1.png")  
 img.save(filepath)
+
+#Opens and displays the QR code image.
 img = Image.open("updated_qr1.png")  
 img.show()
